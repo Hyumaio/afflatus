@@ -1,0 +1,2 @@
+- python3 不支持 mysql-python，在需要导入 mysqldb 时会报错，解决方法是，在 python3 时，pip 安装 mysqlclient。
+- sqlacodemy 可将指定数据库输出为 sqlalchemy 可操作的模型类。
