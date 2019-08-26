@@ -1,14 +1,14 @@
-## pillow
+# pillow
 
 
-##### ImageFont
+## ImageFont
 
 + ImageFont.truetype(*FontFile, FontSize*)
 	+ FontFile 参数指定字体文件。仅支持 truetype 类型的字体文件。
 	+ FontSize 参数指定字体大小，仅支持 interger。暂未知道此参数的值与字体 pt 值的对应关系。
 
 
-##### ImageDraw
+## ImageDraw
 
 + ImageDraw.Draw(*Image*)，此函数定义了一个针对 Image 图像的 Draw 句柄。
 + Draw.text(*xy, text, fill=None, font=None*)
@@ -19,7 +19,7 @@
 
 
 
-##### 其他
+## 其他
 
 + 当需要粘贴一张带有 alpha 通道的图到一张底图上时，pillow 并不会将 alpha 通道自动粘上，也就是说没有透明效果。需要提取 alpha 通道，使用 Image.paste 的 mask 参数，将 alpha 通道手动粘上。代码如下：
 
