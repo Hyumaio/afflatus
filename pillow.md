@@ -21,7 +21,7 @@
 
 ##### 其他
 
-+ 当需要粘贴一张带有 alpha 通道的图到一张底图上时，pillow 并不会将 alpha 通道自动粘上，也就是说没有透明效果。需要提取 alpha 通道，使用 Image.paste 的 mask 参数，将 alpha 通道手动粘上。代码如下
++ 当需要粘贴一张带有 alpha 通道的图到一张底图上时，pillow 并不会将 alpha 通道自动粘上，也就是说没有透明效果。需要提取 alpha 通道，使用 Image.paste 的 mask 参数，将 alpha 通道手动粘上。代码如下：
 
 	
 	```python
@@ -38,3 +38,5 @@
 	background.paste(alpha_pic, box=box, mask=a)
 	```
 	[相关链接请点击这里](https://blog.csdn.net/jacke121/article/details/80425144)
+
++ 在 resize 时，输出图片锯齿现象严重，使用 Image.ANTIALIAS 参数抗锯齿。
