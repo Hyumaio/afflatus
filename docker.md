@@ -22,3 +22,9 @@
 	+ 修改vim配置，添加：set backupcopy=yes。
 + 第二种可能性：更改配置后，用 gunicorn 启动的 flask 程序需要重启，才能使代码生效。
 + 还未清楚是哪一种情况，使用重启容器的方法可以暂时解决这个问题。
+
+## docker latest 标签的疑惑
++ docker tag/build 的时候如果未指定 tag，会自动使用 latest 作为 tag。
++ docker pull 的时候如果只指定了 registry，未指定 tag，会自动使用 latest tag。
++ latest 只是一个字面意思，并不代表它对应的 registry 是最新的版本，你可以将其他任意过时的版本 tag 设置为 latest。
++ latest tag 不会自动更新，如果你需要更新，请重新 docker pull。
