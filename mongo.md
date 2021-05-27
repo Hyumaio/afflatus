@@ -7,5 +7,5 @@
   + 使用 admin 数据库验证此账户（因为 root 创建时指定了 admin 为验证数据库）
 
 ## pymongo
-- 默认使用 admin 作为验证数据库，MongoClient 初始化时可传入 authSource 改变这一行为
+- 默认使用 admin 数据库，也就是说 auth 也会默认使用admin，MongoClient 初始化时可传入 authSource 改变这一行为：[详情](https://pymongo.readthedocs.io/en/stable/examples/authentication.html)
 - `collection.remove()`只会清空 collection 中的数据，保留 collection；`collection.drop()`会直接删除 collection
