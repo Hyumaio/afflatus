@@ -8,4 +8,4 @@
 
 ## pymongo
 - 默认使用 admin 数据库，也就是说 auth 也会默认使用admin，MongoClient 初始化时可传入 authSource 改变这一行为：[详情](https://pymongo.readthedocs.io/en/stable/examples/authentication.html#scram-sha-256-rfc-7677)
-- `collection.remove()`只会清空 collection 中的数据，保留 collection；`collection.drop()`会直接删除 collection
+- `collection.remove()`只会清空 collection 中的数据，保留 collection；`collection.drop()`会直接删除 collection，当 collection 不存在时不会 raise excepetion
