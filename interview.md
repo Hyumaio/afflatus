@@ -1,7 +1,4 @@
 ## PROGRAMMING
-
-### Algorithm
-
 - HTTP
 - RPC
 - RESTful(Representational state transfer) API
@@ -12,6 +9,9 @@
   + multi process
   + croroutine
 - TDD(Test-Driven Development)
+
+
+## Algorithm
 
 
 ## PYTHON FEATURES
