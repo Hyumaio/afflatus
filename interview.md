@@ -11,7 +11,7 @@
 - TDD(Test-Driven Development)
 
 
-## Algorithm
+## ALGORITHM
 
 
 ## PYTHON FEATURES
