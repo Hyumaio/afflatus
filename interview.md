@@ -33,27 +33,27 @@
 ## BACKEND STACK
 
 ### WEB Frameworks
-	- Flask
-	- Django
+- Flask
+- Django
 
 ### Containers
-	- Docker
-	- K8S
+- Docker
+- K8S
 
 ### Deploy Tools
-	- Nginx
-	- uWSGI
+- Nginx
+- uWSGI
 
 
 ## DATABASE
 
 ### RDBMS
-	- MySQL
-	- PostgreSQL
+- MySQL
+- PostgreSQL
 
 ### NOSQL
-	- Redis
-	- MongoDB
+- Redis
+- MongoDB
 
 
 ## OTHERS
