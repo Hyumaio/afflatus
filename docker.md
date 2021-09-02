@@ -27,6 +27,7 @@
 + volumes 等配置所指定的`$pwd`指的是当前宿主机操作环境中的 pwd，比如 volumes 挂载了一个`$pwd`到容器内部，如果此时配置文件位于`<src>/docker/docker-compose.yml`，可以使用两种方式启动：
 	+ 在`<src>`下执行`docker compose -f docker/docker-compose.yml ...`，此时`$pwd`指代宿主机上的`<src>`目录，即挂载整个项目文件夹。
 	+ 在`<src>/docker`下执行`docker compose -f ...`，此时`$pwd`指代宿主机上的`<src>/docker`目录，即只挂载 docker 配置文件文件夹。
++ `-v` 参数不指定宿主机目录时，使用 volume，指定时使用 bind mount。
 
 
 ## others
