@@ -18,4 +18,7 @@ pattern_or.parseString('21arbc') == ['21arbc']  # 尝试所有匹配，第一组
 pattern_matchfirst.parseString('21arbc') == ['21']  # 从左到右匹配，匹配到第一组 21 符合，即返回第一组
 ```
 
-- `infixNotation` 的 `opList` 优先级为倒序
+- `infixNotation` 的 `opList`：
+  - 优先级为倒序
+  - 类似 `MatchFirst`，匹配到即返回，不会去尝试所有可能，所以当一个 op 包含另一个 op 时，一定要保证被包含的 op 放在后面，比如 `?` 和 `?>` 两个 op，如果 `?` 放在前面就会导致无论如何都匹配不到 `?>`
+  - `Op.AssoRight`：当操作数为 1 时，取右边元素，当操作数大于 1 时，在重复 op 的时候，会先计算右边
