@@ -1,6 +1,5 @@
 # docker
 
-
 ## docker CMD
 ### docker run ...
 + `-d`: detached mode，后台运行模式。
@@ -10,6 +9,14 @@
 
 ### docker save/load
 + `docker save <image:tag> | gzip > <filename.tgz>`可以制作压缩镜像，同样使用`docker load <image:tag>`加载此镜像
+
+### docker inspect
++ 可以查看镜像或容器的启动命令: `docker inspect redislabs/redisgraph|egrep -i -A10 'cmd|command'`
+
+### docker prune
++ 清理所有 dangling image: `docker image prune`
++ 清理所有 unused image: `docker image prune -a`
++ 清理所有 stopped container: `docker container prune`
 
 
 ## docker compose CMD
@@ -30,6 +37,10 @@
 + `-v` 参数不指定宿主机目录时，使用 volume，指定时使用 bind mount。
 
 
+## Dockerfile
+> [entrypoint 与 cmd 的区别](https://zhuanlan.zhihu.com/p/30555962)
+
+
 ## others
 ### 在服务器上修改挂载的配置文件时，发现代码中并未生效
 + 第一种可能性(google)：docker挂载文件基于inode。vim等编辑工具保存文件时，并非直接保存，而是将一份新的临时文件覆盖了旧文件。对于inode而言，原文件并未被修改。解决办法:
@@ -44,4 +55,3 @@
 + `docker pull`的时候如果只指定了 registry，未指定 tag，会自动使用 latest tag。
 + latest 只是一个字面意思，并不代表它对应的 registry 是最新的版本，你可以将其他任意过时的版本 tag 设置为 latest。
 + latest tag 不会自动更新，如果你需要更新，请重新 docker pull。
-
