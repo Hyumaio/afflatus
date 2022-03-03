@@ -6,6 +6,7 @@
 + `-p`: port remapping，例如 4000:80 代表将 container 的 80 端口重映射到外部 4000 端口。
 + docker 在 build 时就使用了 Dockerfile（例如其中的环境变量），后续对 Dockerfile 进行修改并不会影响已经 build 完毕的 image。
 + `-it <image> bash`，进入容器内部，`-i`交互模式，`-t`绑定一个 tty 输入，`bash`指定终端。
++ 强制覆盖容器启动命令进入容器：`docker run -it --entrypoint 'bash' xxx`
 
 ### docker save/load
 + `docker save <image:tag> | gzip > <filename.tgz>`可以制作压缩镜像，同样使用`docker load <image:tag>`加载此镜像
@@ -23,12 +24,19 @@
 
 
 ## docker-compose.yml
++ `&<xxx>` 生成 xxx anchor，在后续可 `*xxx` 使用 anchor，也可使用 `<<: *xxx` 进行 merge
+
 ### expose/ports
 + expose 是把此容器的端口暴露给其他内部容器，事实上因为`--icc`参数默认为 True，所以即使没有显式设置此值，其他内部容器也能访问此端口，此时 expose 只是相当于一种标注提示，并没有实际效用。expose 的容器可以不设置 ports，即只暴露给内部容器使用。
 + ports 是把此容器的端口暴露给外界，并且 ports 会隐式设置 expose。
 
 ### volumes
+> *https://biningo.github.io/2021/01/07/docker%E7%9A%84volumes%E8%B8%A9%E5%9D%91/*
+
 + volumes 选项默认是从容器外部挂载到容器内部，所以如果有配置文件需要从容器内部挂载出来时，要保证容器外部挂载目录下先有一份一模一样的文件，否则 compose 启动时容器外部挂载目录为空，就会把空挂载到容器内部，导致容器内部对应的文件消失；data 和 logs 不需要这样处理的原因是，这两个目录第一次运行时本来就是要求置为空的，后续重新运行时，也会把容器外部已经有的 data 和 logs 挂载进去。还有一点是，data 和 logs 是不会手动去修改的，而挂载的配置文件是需要修改的，所以如果后续重新打镜像时容器内部的这些需要挂载的文件有更改，那么一定记住容器外部挂载目录下一定要先有一份一模一样的文件，否则容器外部的文件内容会挂载到容器内部，将其覆盖，导致修改失效。
+  + 从宿主机文件挂载到容器内文件，保证宿主机存在文件，宿主机文件内容会覆盖容器文件内容
+  + 从宿主机目录挂载到容器内目录，自动创建，覆盖容器内目录内容
+  + 无法挂载宿主机目录&容器文件、宿主机文件&容器目录
 + volumes 挂载的宿主目录必须存在，否则会启动失败。
 + docker compose 只能找到当前目录的`docker-compose.yml`文件。
 + volumes 等配置所指定的`$pwd`指的是当前宿主机操作环境中的 pwd，比如 volumes 挂载了一个`$pwd`到容器内部，如果此时配置文件位于`<src>/docker/docker-compose.yml`，可以使用两种方式启动：
